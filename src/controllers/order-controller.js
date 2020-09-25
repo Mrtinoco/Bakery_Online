@@ -1,0 +1,100 @@
+import {
+    GetAllOrders,
+    GetAllUserOrders,
+    CreateNewOrder,
+    GetLastTenOrders,
+    DeleteOrder,
+    UpdateOrderPublic,
+    UpdateOrderStatus,
+    GetOrderById
+} from "../database/services/Orders/Order_DB";
+
+import {
+    GetBreadPrice
+} from "../database/services/Orders/Bread_DB";
+
+import {
+    GetExtraPrice
+} from "../database/services/Orders/Extra_DB";
+
+import {
+    GetGlutenPrice
+} from "../database/services/Orders/Gluten_DB";
+
+import {
+    GetRellenoPrice
+} from "../database/services/Orders/Relleno_DB";
+
+import {matchedData} from "express-validator";
+import path from 'path'
+import fs from 'fs'
+import {createComment} from "../database/services/Orders/Reaction_DB";
+
+export const CreateOrderController = async (req, res, next) => {
+    if (!req.file) {
+        return res.status(400).json({error: 'You must to provide a file in order to create the Post!'})
+    }
+    const postData = req.body;
+    postData.userId = req.user.id;
+    postData.payment = GetBreadPrice(postData.breadId) + GetExtraPrice(postData.extraId) + GetGlutenPrice(postData.glutenId) + GetRellenoPrice(postData.rellenoId);
+    console.log('file', req.file);
+    const newOrder = await CreateNewOrder(postData);
+    res.status(200).json(newOrder)
+};
+
+export const DeleteOrderController = async (req, res) => {
+    await DeleteOrder(req.params.orderId);
+    res.status(200).json({message: 'Order deleted!'})
+};
+
+export const GetAllOrdersController = async (req, res) => {
+    const orders = await GetAllOrders();
+    res.status(200).json(orders)
+};
+
+export const AddCommentToOrderController = async (req, res) => {
+    const data = matchedData(req, {locations: ['body', 'params']});
+    try {
+
+        await createComment(data.orderId, req.user.id, data.comment);
+        res.status(201).json({message: 'Comentario agregado con exito!'})
+    } catch (_e) {
+        console.log('Error',_e)
+        if (_e.statusCode) {
+            return res.status(_e.statusCode).json({message: _e.message})
+        }
+        res.status(500).json('Internal server error')
+    }
+};
+
+export const GetOrderByIdController = async (req, res) => {
+    const order = await GetOrderById(req.params.orderId);
+    if (!order) return res.status(204).end();
+    res.status(200).json(order)
+};
+
+export const UpdateStatusController = async (req, res, next) => {
+    const orderId = req.params.orderId;
+    const postData = matchedData(req, {locations: ['body']});
+    console.log('order data', postData);
+    try {
+        const post = await UpdateOrderStatus(orderId, postData);
+        res.status(200).json({message: 'Status Actualizado!'})
+    } catch (_err) {
+        console.log(_err);
+        res.status(500).json({message: 'Ocurrio un error al actualizar la orden!'})
+    }
+};
+
+export const UpdatePublicController = async (req, res, next) => {
+    const orderId = req.params.orderId;
+    const postData = matchedData(req, {locations: ['body']});
+    console.log('order data', postData);
+    try {
+        const post = await UpdateOrderPublic(orderId, postData);
+        res.status(200).json({message: 'Publico Actualizado!'})
+    } catch (_err) {
+        console.log(_err);
+        res.status(500).json({message: 'Ocurrio un error al actualizar!'})
+    }
+};

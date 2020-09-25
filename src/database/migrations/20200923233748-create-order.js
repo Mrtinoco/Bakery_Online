@@ -8,14 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      status: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      public: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN
-      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -60,6 +52,20 @@ module.exports = {
           model: 'Glutens',
           key: 'id'
         }
+      },
+      payment: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
+      status: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: "Pendiente"
+      },
+      public: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

@@ -1,13 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
-    status: DataTypes.STRING,
-    public: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
     breadId: DataTypes.INTEGER,
     rellenoId: DataTypes.INTEGER,
     extraId: DataTypes.INTEGER,
-    glutenId: DataTypes.INTEGER
+    glutenId: DataTypes.INTEGER,
+    payment: DataTypes.INTEGER,
+    status: DataTypes.STRING,
+    public: DataTypes.BOOLEAN
   }, {});
   Order.associate = function(models) {
     // associations can be defined here
