@@ -1,4 +1,4 @@
-import OrderRouter from './orders'
+import OrderRouter from './orders';
 import viewRouter from "./views";
 
 const Express = require('express');

@@ -1,8 +1,6 @@
 import {
     GetAllOrders,
-    GetAllUserOrders,
     CreateNewOrder,
-    GetLastTenOrders,
     DeleteOrder,
     UpdateOrderPublic,
     UpdateOrderStatus,
