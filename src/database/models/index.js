@@ -1,12 +1,12 @@
 'use strict';
 
-var fs = require('fs');
+import fs from 'fs';
 
-var path = require('path');
+import path from 'path';
 
-var Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
-var envConfigs = require('../config/config');
+import envConfigs from '../config/config';
 
 var basename = path.basename(__filename);
 var env = process.env.NODE_ENV || 'development';
@@ -31,6 +31,8 @@ Object.keys(db).forEach(function (modelName) {
     db[modelName].associate(db);
   }
 });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-module.exports = db;
+
+export default db;

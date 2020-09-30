@@ -62,4 +62,4 @@ OrderRouter.patch('/:postId(\\d+)', isLoggedInAPI, ValidationAPI, UpdateStatusCo
 
 OrderRouter.patch('/:postId(\\d+)', isLoggedInAPI, ValidationAPI, UpdatePublicController);
 
-export default OrderRouter
+export default OrderRouter;

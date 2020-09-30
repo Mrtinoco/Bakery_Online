@@ -13,4 +13,4 @@ principalRouter.use(authRouter);
 
 principalRouter.use('/orders', OrderRouter);
 
-module.exports = principalRouter;
+export default principalRouter;

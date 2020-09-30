@@ -1,8 +1,8 @@
-const passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
+import passport from 'passport';
+import LocalStrategy  from 'passport-local/lib/strategy';
 
-const User = require('../database/services/Users/User_Service');
-const bcrypt = require('bcrypt');
+import  User from '../database/services/Users/User_Service';
+import bcrypt from 'bcrypt';
 
 passport.serializeUser(function (user, done) {
     done(null, user.id);

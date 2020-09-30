@@ -1,17 +1,17 @@
 if (process.env.NODE_ENV === "development"){
-    require('dotenv').config();
+    // require('dotenv').config();
 }
-require('@babel/polyfill');
-const express = require('express');
+import '@babel/polyfill';
+import express from 'express';
 const app = express();
 const port = process.env.PORT || 8080;
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const path = require('path');
-const toastr = require('express-toastr');
-const routes = require('./routes');
-const passport = require('passport');
-const flash = require('connect-flash');
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import path from 'path';
+import toastr from 'express-toastr';
+import routes from './routes';
+import passport from 'passport';
+import flash from 'connect-flash';
 require('./database/config/config');
 
 // parse application/x-www-form-urlencoded
