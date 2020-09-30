@@ -9,7 +9,7 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import path from 'path';
 import toastr from 'express-toastr';
-import routes from './routes';
+import routes from './routes/index';
 import passport from 'passport';
 import flash from 'connect-flash';
 require('./database/config/config');

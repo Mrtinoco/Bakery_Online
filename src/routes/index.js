@@ -1,9 +1,9 @@
 import OrderRouter from './orders';
 import viewRouter from "./views";
 
-const Express = require('express');
+import Express from 'express';
 // App routes
-const authRouter = require('./auth-routes');
+import authRouter from './auth-routes';
 
 const principalRouter = Express.Router();
 
