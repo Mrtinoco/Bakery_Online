@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head') %>
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+
+<%- include('_partials/header',{req:req}) %>
+
+<!-- ********** Hero Area Start ********** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(img/portada.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">Descubre</a></div>
+                    <p>
+                    <h3>No importa para nada si tienes razón o no. Lo que sí importa es cuánto ganas cuando tienes
+                        razón y cuánto pierdes cuando estás equivocado.</h3>
+                    </p>
+                    <p><h3>George Soros</h3></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area End ********** -->
+<!-- ********** Hero Area End ********** -->
+
+<div class="main-content-wrapper section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- ============= Post Content Area Start ============= -->
+            <div class="col-12 col-lg-8">
+
+                <div class="world-latest-articles">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="title">
+                                <h5>Ultimas Ordenes</h5>
+                            </div>
+
+                            <% for(let order of lastFourPosts) { %>
+                                <!-- Single Blog Post -->
+                                <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig"
+                                     data-wow-delay="0.2s">
+                                    <!-- Post Thumbnail -->
+                                    <div class="post-thumbnail">
+                                        <h5><%= order.bread.name %></h5>
+                                        <h5><%= order.relleno.name %></h5>
+                                        <h5><%= order.extra.name %></h5>
+                                        <h5><%= order.gluten.name %></h5>
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <a href="/orders/<%= order.id %>" class="headline">
+                                            <h5><%= order.username %></h5>
+                                        </a>
+                                        <p><%= order.payment %></p>
+                                        <!-- Post Meta -->
+                                        <div class="post-meta">
+                                            <p>
+                                                <a href="#" class="post-author">
+                                                    <%= order.buyer.fullName %>
+                                                </a> on <a href="#">
+                                                    <%= order.createdAt.toLocaleString() %>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <% } %>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== Sidebar Area ========== -->
+            <div class="col-12 col-md-8 col-lg-4">
+                <div class="post-sidebar-area wow fadeInUpBig" data-wow-delay="0.2s">
+                    <!-- Widget Area -->
+                    <%- include('_partials/acerca_de_widget') %>
+                    <!-- Widget Area -->
+                    <!-- Widget Area -->
+                    <div class="sidebar-widget-area">
+                        <h5 class="title">Sigue conectado</h5>
+                        <div class="widget-content">
+                            <div class="social-area d-flex justify-content-center">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Widget Area -->
+                    <div class="sidebar-widget-area">
+                        <h5 class="title">Otros sitios de interés</h5>
+                        <div class="widget-content">
+                            <!-- Single Blog Post -->
+                            <div class="single-blog-post todays-pick">
+                                <!-- Post Thumbnail -->
+                                <div class="post-thumbnail">
+                                    <img src="img/blog-img/BCN.png" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content px-0 pb-0">
+                                    <a href="https://bcn.gob.ni" class="headline">
+                                        <h6>Banco Central de Nicaragua</h6>
+                                    </a>
+                                </div>
+
+                                <!-- Post Thumbnail -->
+                                <div class="post-thumbnail">
+                                    <img src="img/blog-img/SEMCA.jpg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content px-0 pb-0">
+                                    <a href="http://www.secmca.org" class="headline">
+                                        <h6>Consejo Monetario Centroamericano</h6>
+                                    </a>
+                                </div>
+
+
+                                <!-- Post Thumbnail -->
+                                <div class="post-thumbnail">
+                                    <img src="img/blog-img/FRED.png" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content px-0 pb-0">
+                                    <a href="https://fred.stlouisfed.org" class="headline">
+                                        <h6>Federal Reserve Economic Data</h6>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More btn -->
+        <div class="row">
+            <div class="col-12">
+                <div class="load-more-btn mt-50 text-center">
+                    <a href="/posts" class="btn world-btn">Cargar mas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+
+</body>
+</html>

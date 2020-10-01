@@ -1,7 +1,8 @@
 import passport from 'passport';
 import LocalStrategy  from 'passport-local/lib/strategy';
 
-import  User from '../database/services/Users/User_Service';
+import User from '../database/services/Users/User_Service';
+import {UserSearch,UserByUsername} from '../database/services/Users/User_Service';
 import bcrypt from 'bcrypt';
 
 passport.serializeUser(function (user, done) {
@@ -9,13 +10,13 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    User.UserSearch(id)
+        UserSearch(id)
         .then(user => done(null, user));
 });
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        User.UserByUsername(username)
+        UserByUsername(username)
             .then(user => {
                 if (!user) {
                     return done(null, false, {message: 'Usuario incorrecto.'});

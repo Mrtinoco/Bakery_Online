@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head') %>
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<%- include('_partials/header',{req:req, activePage: "edit-post"}) %>
+
+<!-- ********** Hero Area Start ********** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(/img/times_period.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">Redescubre</a></div>
+                    <h3>Tenemos que ser muy rígidos en nuestras reglas y flexibles en nuestras
+                        expectativas.</h3>
+                    </p>
+                    <p><h3>Mark Douglas</h3></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area End ********** -->
+
+<div class="main-content-wrapper section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+
+                <div class="card">
+                    <div class="card-header text-center py-3 bg-info text-white">
+                        <h2 class="text-white">
+                            <strong>Editando Post</strong>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="/" id="edit-post" method="post">
+                            <input type="hidden" id="postId" name="postId" value="<%= post.id %>">
+                            <div class="form-group">
+                                <label for="title">Titulo del post</label>
+                                <input type="text" id="title" name="title" class="form-control"
+                                       placeholder="Escribe el titulo del post" value="<%= post.title %>"
+                                       required>
+                            </div>
+                            <% if (post.content ) { %>
+                                <div class="form-group">
+                                    <label for="content">Contenido del post</label>
+                                    <textarea class="form-control" id="content" name="content"
+                                              rows="6"><%= post.content %></textarea>
+                                </div>
+                            <% } %>
+                            <div class="form-group">
+                                <label for="categoryId">Categoria</label>
+                                <select class="form-control" name="categoryId" id="categoryId">
+                                    <% for(let cat of postCategories) { %>
+                                        <% if (cat.id === post.categoryId ) { %>
+                                            <option selected="selected" value="<%= cat.id %>"><%= cat.name %></option>
+                                        <% } else { %>
+                                            <option value="<%= cat.id %>"><%= cat.name %></option>
+                                        <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Imagen actual</label>
+                                <img src="/img/posts/<%= post.imageUrl %>" alt="Imagen actual"
+                                     class="d-block img-thumbnail">
+                            </div>
+                            <div class="custom-file my-4">
+                                <input type="file" class="custom-file-input" name="image" id="image" lang="es">
+                                <label class="custom-file-label form-control-file" for="image">
+                                    Seleccionar una para reemplazar la imagen actual
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-outline-info px-4">Actualizar</button>
+                            <a href="./" class="btn btn-outline-danger btn-lg">Cancelar</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+</body>
+</html>

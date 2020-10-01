@@ -55,7 +55,7 @@ viewRouter.get('/contact', WillRenderAView, ContactPageController);
 
 viewRouter.get('/orders', isLoggedIn, WillRenderAView, OrderPageController);
 
-viewRouter.get('/posts/:orderId(\\d+)', isLoggedIn, WillRenderAView,  SingleOrderPageController);
+viewRouter.get('/orders/:orderId(\\d+)', isLoggedIn, WillRenderAView,  SingleOrderPageController);
 
 viewRouter.get('/users', isLoggedIn, WillRenderAView, UsersPageController);
 

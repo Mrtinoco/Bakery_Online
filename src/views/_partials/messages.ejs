@@ -1,0 +1,27 @@
+<% if (typeof messages !== 'undefined') { %>
+    <% if (Array.isArray(messages) ){ %>
+        <% for(let message of messages ) { %>
+            <% if (typeof message === 'string') { %>
+                <script>
+                    setTimeout(()=>{
+
+                    toastr.error('Error', message)
+                    }, 100)
+                </script>
+                <div class="alert alert-danger" role="alert">
+                    <strong>Error</strong>
+                    <br>
+                    <%= message %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+        <% } %>
+    <% } %>
+<% } else { %>
+    <h2>There is not any message here</h2>
+<% } %>
+<script>
+
+</script>

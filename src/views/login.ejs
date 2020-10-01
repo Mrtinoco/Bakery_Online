@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head', {req: req}) %>
+<body>
+
+<!------ Include the above in your HEAD tag ---------->
+<div class="main">
+    <div class="col-md-8 col-sm-12 col-lg-6 m-auto">
+        <% if (typeof errors !== 'undefined') { %>
+            <%- include('_partials/messages', {messages: errors }); %>
+        <% } %>
+        <div class="login-form">
+            <div class="card">
+                <div class="card-header text-center py-3 bg-dark text-white">
+                    <h2 class="text-white">
+                        <img src="img/economy-diary-white-logo.png" class="logo-login-form" alt="Logo">
+                        <strong>Inicia Sesion</strong>
+                    </h2>
+                </div>
+                <div class="card-body">
+
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <label for="username">User Name</label>
+                            <input type="text" id="username" name="username" class="form-control"
+                                   placeholder="User Name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control"
+                                   placeholder="Password"
+                                   required>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-dark btn-black px-4">Iniciar</button>
+                    </form>
+                </div>
+                <div class="card-footer bg-transparent d-flex justify-content-between">
+                    <h5 class="m-0 d-inline-block">
+                        No eres miembro aun? <a href="/register">Registrate</a>
+                    </h5>
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        Volver al Inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('_partials/javascripts')%>
+</body>
+</html>
+

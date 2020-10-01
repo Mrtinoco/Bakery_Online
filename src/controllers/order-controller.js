@@ -29,13 +29,10 @@ import fs from 'fs'
 import {createComment} from "../database/services/Orders/Reaction_DB";
 
 export const CreateOrderController = async (req, res, next) => {
-    if (!req.file) {
-        return res.status(400).json({error: 'You must to provide a file in order to create the Post!'})
-    }
     const postData = req.body;
     postData.userId = req.user.id;
     postData.payment = GetBreadPrice(postData.breadId) + GetExtraPrice(postData.extraId) + GetGlutenPrice(postData.glutenId) + GetRellenoPrice(postData.rellenoId);
-    console.log('file', req.file);
+    console.log(postData);
     const newOrder = await CreateNewOrder(postData);
     res.status(200).json(newOrder)
 };

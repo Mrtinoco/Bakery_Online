@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('_partials/head') %>
+
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg">
+                    <!-- Logo -->
+                    <a class="navbar-brand p-0" href="/">
+                        <img src="img/economy-diary-white-logo.png" class="logo-economy-diary" alt="Logo">
+                    </a>
+                    <!-- Navbar Toggler -->
+                    <button class="navbar-toggler" type="button"
+                            aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                                class="navbar-toggler-icon"></span></button>
+                    <!-- Navbar -->
+                    <div class="collapse navbar-collapse" id="worldNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Inicio</a>
+                            </li>
+                            <% if( req.isAuthenticated() ) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/my-posts">Mis posts</a>
+                                </li>
+                            <% } %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/posts">Posts</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/contact">Contactos<span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                        <% if(req.isAuthenticated())  { %>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                            </ul>
+                        <% } else { %>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">Login</a>
+                                </li>
+                            </ul>
+                        <% } %>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(img/contactos.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">Comunica</a></div>
+                    <p>
+                    <h3>La economía nunca ha sido una ciencia, y lo es aún menos ahora que hace unos años.</h3>
+                    </p>
+                    <p><h3>Paul A. Samuelson</h3></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area Start ********** -->
+<!-- Post Content -->
+<!-- ********** Hero Area End ********** -->
+
+<section class="contact-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Contact Form Area -->
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="contact-form">
+                    <h5>Consultas y sugerencias</h5>
+                    <!-- Contact Form -->
+                    <div class="row">
+                        <p>
+                            En “The Economics Diary” estamos dispuestos a mejorar
+                            cada día por lo que tu opinión es importante para nosotros.
+                        </p>
+                        <p>
+                            Si has tenido algún problema con el sitio, o tienes alguna
+                            sugerencia siéntete libre de escribirnos.
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <p>
+                    <a class="btn world-btn" href="mailto:tinocomarcos21@gmail.com?subject=Consulta de The Economics Diary">Escríbenos</a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Google Maps: If you want to google map, just uncomment below codes -->
+<!--
+<div class="map-area">
+    <div id="googleMap" class="googleMap"></div>
+</div>
+-->
+
+<!-- ***** Footer Area Start ***** -->
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+
+<!-- Google Maps: If you want to google map, just uncomment below codes -->
+<!--
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwuyLRa1uKNtbgx6xAJVmWy-zADgegA2s"></script>
+<script src="js/map-active.js"></script>
+-->
+
+</body>
+
+</html>

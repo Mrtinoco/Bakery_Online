@@ -57,8 +57,8 @@ app.use(toastr({
     "hideMethod": "fadeOut"
 }));
 // Routes
+app.use(express.static('public'));
 app.use('/', routes);
-
 
 var server = app.listen(port, () =>
     console.log(`Example app listening at http://localhost:${port}`)

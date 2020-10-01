@@ -1,0 +1,63 @@
+html, body {
+    box-sizing: border-box;
+    min-height: 100%;
+}
+.logo-economy-diary {
+    object-fit: cover;
+    width: 65px;
+    margin-top: -3px;
+}
+@media (max-width: 1000px) {
+    .logo-economy-diary {
+        width: 61px;
+        margin-top: -9px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1210px;
+    }
+
+
+}
+
+.only-2-lines {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+
+.logo-login-form {
+    position: absolute;
+    left: 20px;
+    height: 60px;
+    top: -1px;
+}
+
+.login-form {
+    margin-top: 27%;
+}
+
+.spinner-grow-xl {
+    width: 15rem;
+    height: 15rem;
+}
+
+.single-blog-post .post-thumbnail .single-linear-post-category {
+    position: absolute;
+    top: 10px;
+    left: -1px;
+    z-index: 100;
+}
+
+pre {
+    color: #8d8d8d;
+    font-family: "Work Sans", sans-serif;
+    font-size: 1.35rem;
+    white-space: pre-wrap;
+}

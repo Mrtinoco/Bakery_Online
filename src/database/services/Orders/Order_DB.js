@@ -8,7 +8,7 @@ export async function GetAllOrders(extraOptions = {}) {
             {model: db.Extra, as: 'extra'},
             {model: db.Gluten, as: 'gluten'},
             {model: db.OrderReaction, as: 'reactions'}, {
-                model: db.User, as: 'author',
+                model: db.User, as: 'buyer',
                 attributes: ['id', 'fullName', 'first_name', 'last_name','address']
             }],
         ...extraOptions
@@ -34,24 +34,28 @@ export async function GetLastTenOrders() {
     return db.Order.findAll({
         include: [
             {
-                model: db.User, as: 'author',
+                model: db.User, as: 'buyer',
                 attributes: ['id', 'fullName', 'first_name', 'last_name','address']
             },
             {
                 model: db.Bread,
-                as: 'bread'
+                as: 'bread',
+                attributes: ['name', 'price']
             },
             {
                 model: db.Relleno,
-                as: 'relleno'
+                as: 'relleno',
+                attributes: ['name', 'price']
             },
             {
                 model: db.Extra,
-                as: 'extra'
+                as: 'extra',
+                attributes: ['name', 'price']
             },
             {
                 model: db.Gluten,
-                as: 'gluten'
+                as: 'gluten',
+                attributes: ['name', 'price']
             }
         ], order: [['createdAt', 'DESC']], limit: 11, offset: 0
     })
@@ -97,11 +101,11 @@ export async function GetOrderById(postId) {
             model: db.OrderReaction,
             as: 'reactions',
             include: [{
-                model: db.User, as: 'author',
+                model: db.User, as: 'buyer',
                 attributes: ['id', 'fullName', 'first_name', 'last_name','address']
             }]
         }, {
-            model: db.User, as: 'author',
+            model: db.User, as: 'buyer',
             attributes: ['id', 'fullName', 'first_name', 'last_name','address']
         }, {
             model: db.Bread,
@@ -116,7 +120,7 @@ export async function GetOrderById(postId) {
             model: db.Gluten,
             as: 'gluten'
         }, {
-            model: db.User, as: 'author',
+            model: db.User, as: 'buyer',
             attributes: ['id', 'fullName', 'first_name', 'last_name','address']
         }]
     })

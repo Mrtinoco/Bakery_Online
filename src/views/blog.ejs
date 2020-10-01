@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head') %>
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<%- include('_partials/header',{req:req, activePage: "posts"}) %>
+
+<!-- ********** Hero Area Start ********** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(img/times_period.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">Descubre</a></div>
+                    <p>
+                    <h3>El activo más poderoso con el que contamos es nuestra mente.</h3>
+                    </p>
+                    <p><h3>Robert Kiyosaki</h3></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area End ********** -->
+
+<div class="main-content-wrapper section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- ============= Post Content Area Start ============= -->
+            <div class="col-12 col-lg-8">
+                <div class="post-content-area mb-100">
+                    <!-- Catagory Area -->
+                    <div class="world-catagory-area">
+                        <ul class="nav nav-tabs" id="blogsTab" role="tablist">
+                            <li class="title">Todos los Posts</li>
+                            <% for(let category of postCategories) { %>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab<%= category.id %>" data-toggle="tab"
+                                       href="#post-tab-<%= category.id %>" data-category-id="<%= category.id %>"
+                                       role="tab"
+                                       aria-controls="post-tab-<%= category.id %>"
+                                       aria-selected="false"><%= category.name %></a>
+                                </li>
+                            <% } %>
+                        </ul>
+
+                        <div class="tab-content" id="blogsTabContent">
+                            <h3 class="text-black-50">
+                                *Selecciona una categoria para cargar sus posts.
+                            </h3>
+                            <p class="lead">
+                                Los posts seran actualizados al momento.
+                            </p>
+                            <% for(let category of postCategories) { %>
+                                <div class="tab-pane fade" id="post-tab-<%= category.id %>" role="tabpanel"
+                                     aria-labelledby="tab<%= category.id %>">
+                                    <h2>Cargando posts de la categoria <b><%= category.name %></b></h2>
+                                    <div class="m-auto" style="width: fit-content;">
+                                        <div class="spinner-grow spinner-grow-xl" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ========== Sidebar Area ========== -->
+            <div class="col-12 col-md-8 col-lg-4">
+                <div class="post-sidebar-area wow fadeInUpBig" data-wow-delay="0.2s">
+                    <!-- Widget Area -->
+                    <%- include('_partials/acerca_de_widget') %>
+                    <!-- Widget Area -->
+                    <div class="sidebar-widget-area">
+                        <h5 class="title">Sigue conectado</h5>
+                        <div class="widget-content">
+                            <div class="social-area d-flex justify-content-center">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-google"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Widget Area -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+<script>
+    $('#blogsTab a').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).tab('show');
+        const {categoryId} = this.dataset;
+        if (categoryId) {
+            const tabContent = $(`#post-tab-${categoryId}`);
+            $.get(`/post-category/posts/${categoryId}`)
+                .done(result => {
+                    console.log('success', result);
+                    let html = '';
+                    for (let post of result) {
+                        console.log('pos', post);
+                        html += `
+                        <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig"
+                        data-wow-delay="0.2s">
+                            <div class="post-thumbnail">
+                            <img src='/img/posts/${post.imageUrl}' alt="">
+                            <div class="post-cta single-linear-post-category">
+                                            <a href="#">${post.category.name}</a>
+                            </div>
+                            </div>
+                            <div class="post-content">
+                            <a href="/posts/${post.id}" class="headline">
+                            <h5>${post.title}</h5>
+                            </a>
+                            <p class="only-2-lines">${post.content}</p>
+                            <div class="post-meta">
+                            <p>
+                            <a href="#" class="post-author">
+                            ${post.author.fullName}
+                            </a> on <a href="#">
+                            ${new Date(post.createdAt).toLocaleString()}
+                            </a>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    }
+                    setTimeout(() => {
+                        $(`#post-tab-${categoryId}`).html(html)
+                    }, 500)
+                })
+                .fail(err => {
+                    $(`#post-tab-${categoryId}`).html('<h2>Error obteniendo los posts de la categoria</h2>')
+                })
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head') %>
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<%- include('_partials/header',{req:req, activePage: "my-posts"}) %>
+
+<!-- ********** Hero Area Start ********** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(/img/times_period.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">Crea</a></div>
+                    <h3>Hay que ser codicioso cuando los demás son temerosos y temerosos
+                        cuando los demás son codiciosos</h3>
+                    </p>
+                    <p><h3>Warren Buffett</h3></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area End ********** -->
+
+<div class="main-content-wrapper section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="title my-5">
+                    <h2>Mis Posts</h2>
+                    <a href="/posts/new" class="btn btn-outline-info btn-lg">Create un nuevo Post</a>
+                </div>
+
+                <% for(let post of posts) { %>
+                    <!-- Single Blog Post -->
+                    <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig"
+                         data-wow-delay="0.2s">
+                        <!-- Post Thumbnail -->
+                        <div class="post-thumbnail">
+                            <img src='/img/posts/<%= post.imageUrl %>' alt="">
+                            <div class="post-cta single-linear-post-category">
+                                <a href="#"><%= post.category.name %></a>
+                            </div>
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content w-100">
+                            <div class="headline d-flex w-100 justify-content-between">
+                                <a href="/posts/<%= post.id %>">
+                                    <h5><%= post.title %></h5>
+                                </a>
+                                <div>
+                                    <a href="/posts/<%= post.id %>/edit" class="btn btn-outline-primary">Edit</a>
+                                    <button type="submit" data-post-id="<%= post.id%>" class="btn btn-outline-danger deleteMyPost-big">Delete
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="only-2-lines">
+                                <%= post.content %>
+                            </p>
+                            <!-- Post Meta -->
+                            <div class="post-meta">
+                                <p>
+                                    <a href="#" class="post-author">
+                                        <%= post.author.fullName %>
+                                    </a> on <a href="#">
+                                        <%= post.createdAt.toLocaleString() %>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                <% } %>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+</body>
+</html>

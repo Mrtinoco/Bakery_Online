@@ -11,11 +11,11 @@ export async function CreateNewUser(args) {
     return await CreateUser(args);
 }
 
-export async function UserByUsername(credentials) {
+export function UserByUsername(credentials) {
     return FindUser(credentials);
 }
 
-export async function UserSearch(id) {
+export function UserSearch(id) {
     return FindUserById(id)
 }
 

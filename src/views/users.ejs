@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head') %>
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<%- include('_partials/header',{req:req, activePage: "users"}) %>
+
+
+<!-- ********** Hero Area Start ********** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(/img/times_period.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">travel</a></div>
+                    <h3>How Did van Gogh’s Turbulent Mind Depict One of the Most Complex Concepts in Physics?</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area End ********** -->
+
+<div class="main-content-wrapper section-padding-100">
+    <div class="container">
+        <div class="row justify-content">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col"># de posts</th>
+                    <th scope="col">Fecha de Creacion</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(let user of users) { %>
+                    <tr>
+                        <th scope="row"><%= user.id %></th>
+                        <td><%= user.first_name %></td>
+                        <td><%= user.last_name %></td>
+                        <td><%= user.dataValues.postCount %></td>
+                        <td><%= new Date(user.createdAt).toLocaleString()%></td>
+                        <td>
+                            <% if ( user.id  === req.user.id ) {%>
+                                <p>No puedes eliminar un administrador</p>
+                            <% } else {%>
+                            <button class="btn btn-outline-danger btn-delete-user" data-user-id="<%= user.id%>">Delete</button>
+                            <% }%>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+</body>
+</html>
