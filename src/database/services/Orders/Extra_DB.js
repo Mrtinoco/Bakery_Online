@@ -14,7 +14,7 @@ export async function GetAllOrdersExtra() {
 }
 
 export async function GetExtraPrice(extraId) {
-    const extra = db.Extra.findByPk(extraId);
+    const extra = await db.Extra.findByPk(extraId);
     return extra.price
 }
 

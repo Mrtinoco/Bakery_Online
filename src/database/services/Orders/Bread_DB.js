@@ -14,7 +14,7 @@ export async function GetAllOrdersBread() {
 }
 
 export async function GetBreadPrice(breadId) {
-    const bread = db.Bread.findByPk(breadId);
+    const bread = await db.Bread.findByPk(breadId);
     return bread.price
 }
 

@@ -14,7 +14,7 @@ export async function GetAllOrdersRelleno() {
 }
 
 export async function GetRellenoPrice(rellenoId) {
-    const relleno = db.Relleno.findByPk(rellenoId);
+    const relleno = await db.Relleno.findByPk(rellenoId);
     return relleno.price
 }
 

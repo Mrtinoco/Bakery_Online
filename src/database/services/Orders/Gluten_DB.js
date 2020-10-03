@@ -14,7 +14,7 @@ export async function GetAllOrdersGluten() {
 }
 
 export async function GetGlutenPrice(glutenId) {
-    const gluten = db.Gluten.findByPk(glutenId);
+    const gluten = await db.Gluten.findByPk(glutenId);
     return gluten.price
 }
 

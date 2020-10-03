@@ -31,11 +31,21 @@ import {createComment} from "../database/services/Orders/Reaction_DB";
 export const CreateOrderController = async (req, res, next) => {
     const postData = req.body;
     postData.userId = req.user.id;
-    postData.payment = GetBreadPrice(postData.breadId) + GetExtraPrice(postData.extraId) + GetGlutenPrice(postData.glutenId) + GetRellenoPrice(postData.rellenoId);
+    //postData.payment = GetBreadPrice(postData.breadId) + GetExtraPrice(postData.extraId) + GetGlutenPrice(postData.glutenId) + GetRellenoPrice(postData.rellenoId);
+    postData.payment = await price(postData.breadId,postData.extraId,postData.glutenId,postData.rellenoId);
     console.log(postData);
     const newOrder = await CreateNewOrder(postData);
     res.status(200).json(newOrder)
 };
+
+async function price (breadId,extraId,glutenId,rellenoId) {
+    let p1 = await GetBreadPrice(breadId);
+    let p2 = await GetExtraPrice(extraId);
+    let p3 = await GetGlutenPrice(glutenId);
+    let p4 = await GetRellenoPrice(rellenoId);
+    let priced = p1 + p2 + p3 + p4;
+    return priced;
+}
 
 export const DeleteOrderController = async (req, res) => {
     await DeleteOrder(req.params.orderId);
