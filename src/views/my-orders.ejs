@@ -37,42 +37,41 @@
             <div class="col-12">
                 <div class="title my-5">
                     <h2>Mis Posts</h2>
-                    <a href="/posts/new" class="btn btn-outline-info btn-lg">Create un nuevo Post</a>
+                    <a href="/orders/new" class="btn btn-outline-info btn-lg">Haz una nueva orden</a>
                 </div>
 
-                <% for(let post of posts) { %>
+                <% for(let order of orders) { %>
                     <!-- Single Blog Post -->
                     <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig"
                          data-wow-delay="0.2s">
                         <!-- Post Thumbnail -->
                         <div class="post-thumbnail">
-                            <img src='/img/posts/<%= post.imageUrl %>' alt="">
                             <div class="post-cta single-linear-post-category">
-                                <a href="#"><%= post.category.name %></a>
+                                <a href="#"><%= order.breadId %></a>
+                                <a href="#"><%= order.extraId%></a>
+                                <a href="#"><%= order.rellenoId %></a>
+                                <a href="#"><%= order.glutenId %></a>
                             </div>
                         </div>
                         <!-- Post Content -->
                         <div class="post-content w-100">
                             <div class="headline d-flex w-100 justify-content-between">
-                                <a href="/posts/<%= post.id %>">
-                                    <h5><%= post.title %></h5>
+                                <a href="/orders/<%= order.id %>">
+                                    <h5><%= order.id %></h5>
                                 </a>
                                 <div>
-                                    <a href="/posts/<%= post.id %>/edit" class="btn btn-outline-primary">Edit</a>
-                                    <button type="submit" data-post-id="<%= post.id%>" class="btn btn-outline-danger deleteMyPost-big">Delete
+                                    <a href="/orders/<%= order.id %>/edit" class="btn btn-outline-primary">Edit</a>
+                                    <button type="submit" data-post-id="<%= order.id%>" class="btn btn-outline-danger deleteMyPost-big">Delete
                                     </button>
                                 </div>
                             </div>
-                            <p class="only-2-lines">
-                                <%= post.content %>
-                            </p>
                             <!-- Post Meta -->
                             <div class="post-meta">
                                 <p>
                                     <a href="#" class="post-author">
-                                        <%= post.author.fullName %>
+                                        <%= order.buyer.fullName %>
                                     </a> on <a href="#">
-                                        <%= post.createdAt.toLocaleString() %>
+                                        <%= order.createdAt.toLocaleString() %>
                                     </a>
                                 </p>
                             </div>

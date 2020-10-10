@@ -48,7 +48,7 @@
 
                             <div class="form-group">
                                 <label for="breadId">Tipo de Pan</label>
-                                <select class="form-control" name="breadId" id="breadId">
+                                <select class="form-control" name="breadId" id="breadId" onchange="breadFunction()">
                                     <% for(let bread of BreadCategories) { %>
                                         <option value="<%= bread.id %>"><%= bread.name %></option>
                                     <% } %>
@@ -83,6 +83,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-lg btn-outline-info px-4">Pedir</button>
+
                         </form>
                     </div>
                 </div>
@@ -90,6 +91,18 @@
         </div>
 
     </div>
+</div>
+
+<!-- Imagen del pan -->
+<script>
+    function breadFunction() {
+        let b_image_n = document.getElementById("breadId").value;
+        document.getElementById("bread-img").src="/img/posts/breads/" + b_image_n +".jpg";
+    }
+</script>
+
+<div class="post-thumbnail">
+        <img id="bread-img" src="/img/posts/breads/1.jpg" alt="">
 </div>
 
 <!-- ***** Footer Area Start ***** -->

@@ -58,8 +58,8 @@ OrderRouter.post('/:orderId(\\d+)/comment', isLoggedInAPI,createCommentValidatio
 
 OrderRouter.delete('/:orderId(\\d+)', isLoggedInAPI, DeleteOrderController);
 
-OrderRouter.patch('/:postId(\\d+)', isLoggedInAPI, ValidationAPI, UpdateStatusController);
+OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdateStatusController);
 
-OrderRouter.patch('/:postId(\\d+)', isLoggedInAPI, ValidationAPI, UpdatePublicController);
+OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdatePublicController);
 
 export default OrderRouter;

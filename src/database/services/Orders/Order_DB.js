@@ -2,12 +2,7 @@ import db from '../../models';
 
 export async function GetAllOrders(extraOptions = {}) {
     return db.Order.findAll({
-        include: [
-            {model: db.Bread, as: 'bread'},
-            {model: db.Relleno, as: 'relleno'},
-            {model: db.Extra, as: 'extra'},
-            {model: db.Gluten, as: 'gluten'},
-            {model: db.OrderReaction, as: 'reactions'}, {
+        include: [{
                 model: db.User, as: 'buyer',
                 attributes: ['id', 'fullName', 'first_name', 'last_name','address']
             }],
