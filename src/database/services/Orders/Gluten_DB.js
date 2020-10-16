@@ -18,6 +18,11 @@ export async function GetGlutenPrice(glutenId) {
     return gluten.price
 }
 
+export async function GetGlutenName(glutenId) {
+    const gluten = await db.Gluten.findByPk(glutenId);
+    return gluten.name
+}
+
 async function UpdateGlutenPrice(glutenId, price) {
     const Gluten = db.Gluten.findByPk(glutenId);
     if (gluten) {

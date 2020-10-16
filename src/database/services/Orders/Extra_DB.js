@@ -18,6 +18,11 @@ export async function GetExtraPrice(extraId) {
     return extra.price
 }
 
+export async function GetExtraName(extraId) {
+    const extra = await db.Extra.findByPk(extraId);
+    return extra.name
+}
+
 async function UpdateExtraPrice(extraId, price) {
     const extra = db.Extra.findByPk(extraId);
     if (extra) {

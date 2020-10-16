@@ -1,8 +1,8 @@
 import {GetAllUserOrders, GetLastTenOrders, GetOrderById} from "../database/services/Orders/Order_DB";
-import {GetAllOrdersBread} from "../database/services/Orders/Bread_DB";
-import {GetAllOrdersExtra} from "../database/services/Orders/Extra_DB";
-import {GetAllOrdersGluten} from "../database/services/Orders/Gluten_DB";
-import {GetAllOrdersRelleno} from "../database/services/Orders/Relleno_DB";
+import {GetAllOrdersBread,GetBreadName} from "../database/services/Orders/Bread_DB";
+import {GetAllOrdersExtra, GetExtraName} from "../database/services/Orders/Extra_DB";
+import {GetAllOrdersGluten, GetGlutenName} from "../database/services/Orders/Gluten_DB";
+import {GetAllOrdersRelleno, GetRellenoName} from "../database/services/Orders/Relleno_DB";
 
 import {GetAllUsers, GetAllUsersService} from "../database/services/Users/User_Service";
 
@@ -30,8 +30,23 @@ export const SingleOrderPageController = async (req, res) => {
 export const MyOrderPageController = async (req, res) => {
     const orders = await GetAllUserOrders(req.user.id);
 
+    for (let order of orders) {
+        console.log(order);
+        let bid = order.breadId;
+        let eid = order.extraId;
+        let gid = order.glutenId;
+        let rid = order.rellenoId;
+        order.breadId = await GetBreadName(bid);
+        order.extraId = await GetExtraName(eid);
+        order.glutenId = await GetGlutenName(gid);
+        order.rellenoId = await GetRellenoName(rid);
+    }
     res.render('my-orders', {orders: orders || []});
 };
+
+
+
+
 
 export const ContactPageController = (req, res) => res.render('contact');
 

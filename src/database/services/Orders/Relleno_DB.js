@@ -18,6 +18,11 @@ export async function GetRellenoPrice(rellenoId) {
     return relleno.price
 }
 
+export async function GetRellenoName(rellenoId) {
+    const relleno = await db.Relleno.findByPk(rellenoId);
+    return relleno.name
+}
+
 async function UpdateRellenoPrice(rellenoId, price) {
     const relleno = db.Relleno.findByPk(rellenoId);
     if (relleno) {
