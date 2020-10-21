@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     extraId: DataTypes.INTEGER,
     glutenId: DataTypes.INTEGER,
     payment: DataTypes.INTEGER,
+    imageurl: DataTypes.STRING,
     status: DataTypes.STRING,
     public: DataTypes.BOOLEAN
   }, {});

@@ -57,6 +57,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.INTEGER
       },
+      imageurl: {
+        allowNull: true,
+        type: Sequelize.STRING,
+        defaultValue: "d_order.jpg"
+      },
       status: {
         allowNull: false,
         type: Sequelize.STRING,

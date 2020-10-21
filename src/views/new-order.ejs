@@ -57,7 +57,7 @@
 
                             <div class="form-group">
                                 <label for="extraId">Extra</label>
-                                <select class="form-control" name="extraId" id="extraId">
+                                <select class="form-control" name="extraId" id="extraId" onchange="extraFunction()">
                                     <% for(let extra of ExtraCategories) { %>
                                         <option value="<%= extra.id %>"><%= extra.name %></option>
                                     <% } %>
@@ -66,7 +66,7 @@
 
                             <div class="form-group">
                                 <label for="rellenoId">¿Desea que su pan lleve gluten?</label>
-                                <select class="form-control" name="rellenoId" id="rellenoId">
+                                <select class="form-control" name="rellenoId" id="rellenoId" onchange="rellenoFunction()">
                                     <% for(let relleno of RellenoCategories) { %>
                                         <option value="<%= relleno.id %>"><%= relleno.name %></option>
                                     <% } %>
@@ -75,7 +75,7 @@
 
                             <div class="form-group">
                                 <label for="glutenId">¿Desea que su pan lleve gluten?</label>
-                                <select class="form-control" name="glutenId" id="glutenId">
+                                <select class="form-control" name="glutenId" id="glutenId" onchange="glutenFunction()">
                                     <% for(let gluten of GlutenCategories) { %>
                                         <option value="<%= gluten.id %>"><%= gluten.name %></option>
                                     <% } %>
@@ -99,10 +99,42 @@
         let b_image_n = document.getElementById("breadId").value;
         document.getElementById("bread-img").src="/img/posts/breads/" + b_image_n +".jpg";
     }
+
+    function extraFunction() {
+        let e_image_n = document.getElementById("extraId").value;
+        document.getElementById("extra-img").src="/img/posts/extras/" + e_image_n +".jpg";
+    }
+
+    function rellenoFunction() {
+        let r_image_n = document.getElementById("rellenoId").value;
+        document.getElementById("relleno-img").src="/img/posts/rellenos/" + r_image_n +".jpg";
+    }
+
+    function glutenFunction() {
+        let g_image_n = document.getElementById("glutenId").value;
+        document.getElementById("gluten-img").src="/img/posts/gluten/" + g_image_n +".jpg";
+    }
+
 </script>
 
+<!-- Imagen del Pan-->
 <div class="post-thumbnail">
         <img id="bread-img" src="/img/posts/breads/1.jpg" alt="">
+</div>
+
+<!-- Imagen del Extra-->
+<div class="post-thumbnail">
+    <img id="extra-img" src="/img/posts/extras/1.jpg" alt="">
+</div>
+
+<!-- Imagen del Relleno -->
+<div class="post-thumbnail">
+    <img id="relleno-img" src="/img/posts/rellenos/1.jpg" alt="">
+</div>
+
+<!-- Imagen de la masa -->
+<div class="post-thumbnail">
+    <img id="gluten-img" src="/img/posts/gluten/1.jpg" alt="">
 </div>
 
 <!-- ***** Footer Area Start ***** -->
