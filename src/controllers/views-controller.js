@@ -1,4 +1,4 @@
-import {GetAllUserOrders, GetLastTenOrders, GetOrderById} from "../database/services/Orders/Order_DB";
+import {GetAllUserOrders, GetLastTenOrders, GetOrderById, GetAllUserPayOrders} from "../database/services/Orders/Order_DB";
 import {GetAllOrdersBread,GetBreadName} from "../database/services/Orders/Bread_DB";
 import {GetAllOrdersExtra, GetExtraName} from "../database/services/Orders/Extra_DB";
 import {GetAllOrdersGluten, GetGlutenName} from "../database/services/Orders/Gluten_DB";
@@ -28,7 +28,7 @@ export const SingleOrderPageController = async (req, res) => {
 };
 
 export const MyOrderPageController = async (req, res) => {
-    const orders = await GetAllUserOrders(req.user.id);
+    const orders = await GetAllUserPayOrders(req.user.id);
 
     for (let order of orders) {
         console.log(order);

@@ -14,6 +14,10 @@ export async function GetAllUserOrders(userId) {
     return GetAllOrders({where: {userId}, order: [['createdAt', 'DESC']]})
 }
 
+export async function GetAllUserPayOrders(userId) {
+    return GetAllOrders({where: {userId, status: "Pendiente"},order: [['createdAt', 'DESC']]})
+}
+
 export async function CreateNewOrder(postData) {
     if (!postData.breadId) throw new Error('Invalid argument: breadId');
     if (!postData.rellenoId) throw new Error('Invalid argument: rellenoId');
