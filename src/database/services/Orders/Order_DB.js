@@ -14,7 +14,16 @@ export async function GetAllUserOrders(userId) {
     return GetAllOrders({where: {userId}, order: [['createdAt', 'DESC']]})
 }
 
+
 export async function GetAllUserPayOrders(userId) {
+    return GetAllOrders({where: {userId, status: "Pagado"},order: [['createdAt', 'DESC']]})
+}
+
+export async function GetAllUserPendOrders(userId) {
+    return GetAllOrders({where: {userId, status: "Pendiente"},order: [['createdAt', 'DESC']]})
+}
+
+export async function GetCartOrders(userId) {
     return GetAllOrders({where: {userId, status: "Pendiente"},order: [['createdAt', 'DESC']]})
 }
 
@@ -81,17 +90,19 @@ export async function UpdateOrderPublic(orderId, postData) {
     return order
 }
 
-export async function UpdateOrderStatus(orderId, postData) {
+export async function UpdateOrderStatus(orderId) {
     if (!orderId) throw new Error('Invalid argument: orderId');
-    if (!postData.status) throw new Error('Invalid argument: postData.status');
 
-    const order = await db.Order.findByPk(orderId);
-    if (order) {
+    const orders = await GetAllUserPendOrders(orderId);
+
+    if (orders) {
         // Give like
-        order.status = postData.status;
-        await order.save()
+        for (let order of orders) {
+            order.status = 'Pagado';
+            await order.save()
+        }
     }
-    return order
+    return orders
 }
 
 export async function GetOrderById(postId) {

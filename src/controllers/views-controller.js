@@ -1,4 +1,4 @@
-import {GetAllUserOrders, GetLastTenOrders, GetOrderById, GetAllUserPayOrders} from "../database/services/Orders/Order_DB";
+import {GetAllUserOrders, GetLastTenOrders, GetOrderById, GetAllUserPayOrders,GetCartOrders} from "../database/services/Orders/Order_DB";
 import {GetAllOrdersBread,GetBreadName} from "../database/services/Orders/Bread_DB";
 import {GetAllOrdersExtra, GetExtraName} from "../database/services/Orders/Extra_DB";
 import {GetAllOrdersGluten, GetGlutenName} from "../database/services/Orders/Gluten_DB";
@@ -44,8 +44,22 @@ export const MyOrderPageController = async (req, res) => {
     res.render('my-orders', {orders: orders || []});
 };
 
+export const MyCartPageController = async (req, res) => {
+    const orders = await GetCartOrders(req.user.id);
 
-
+    for (let order of orders) {
+        console.log(order);
+        let bid = order.breadId;
+        let eid = order.extraId;
+        let gid = order.glutenId;
+        let rid = order.rellenoId;
+        order.breadId = await GetBreadName(bid);
+        order.extraId = await GetExtraName(eid);
+        order.glutenId = await GetGlutenName(gid);
+        order.rellenoId = await GetRellenoName(rid);
+    }
+    res.render('carrito', {orders: orders || []});
+};
 
 
 export const ContactPageController = (req, res) => res.render('contact');

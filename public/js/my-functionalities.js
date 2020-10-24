@@ -95,6 +95,31 @@
             }
         });
 
+        $('button.deleteMyPost-big').on('click', function (e) {
+            const deleteButton = $(this);
+            const postId = deleteButton.data('postId');
+            if (postId) {
+                const eliminar = confirm('Estas seguro que deseas eliminar el post?');
+                if (eliminar) {
+                    $.ajax({
+                        url: `/posts/${postId}`,
+                        type: 'DELETE',
+                    })
+                        .done(() => {
+                            toastr.info('El post seleccionado fue eliminado!', 'Exito');
+                            const blogItem = deleteButton.parents('div.single-blog-post');
+                            if (blogItem) {
+                                blogItem.remove()
+                            }
+                        })
+                        .fail(err => {
+                            DisplayMessagesFromRequestError(err, 'Ocurrio un error tratando de eliminar el post!');
+                            toastr.error('No se pudo eliminar eliminar el post seleccionado!', 'Error')
+                        })
+                }
+            }
+        });
+
         const editPostForm = $('form#edit-post');
         if (editPostForm) {
             editPostForm.on('submit', function (e) {

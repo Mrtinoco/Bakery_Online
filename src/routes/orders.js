@@ -52,13 +52,14 @@ OrderRouter.get('/', GetAllOrdersController);
 
 OrderRouter.get('/:orderId(\\d+)', GetOrderByIdController);
 
-OrderRouter.post('/', isLoggedInAPI, createOrderValidation, ValidationAPI, CreateOrderController);
+OrderRouter.post('/orders/new', isLoggedInAPI, createOrderValidation, ValidationAPI, CreateOrderController);
 
 OrderRouter.post('/:orderId(\\d+)/comment', isLoggedInAPI,createCommentValidation, ValidationAPI, AddCommentToOrderController);
 
 OrderRouter.delete('/:orderId(\\d+)', isLoggedInAPI, DeleteOrderController);
 
-OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdateStatusController);
+// OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdateStatusController);
+OrderRouter.patch('/carrito', isLoggedInAPI, ValidationAPI, UpdateStatusController);
 
 OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdatePublicController);
 

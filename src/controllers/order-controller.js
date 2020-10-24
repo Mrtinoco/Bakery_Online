@@ -79,11 +79,11 @@ export const GetOrderByIdController = async (req, res) => {
 };
 
 export const UpdateStatusController = async (req, res, next) => {
-    const orderId = req.params.orderId;
-    const postData = matchedData(req, {locations: ['body']});
-    console.log('order data', postData);
+    const orderId = req.body.orderId;
+    //const orderId = 1;
+    console.log(orderId);
     try {
-        const post = await UpdateOrderStatus(orderId, postData);
+        const post = await UpdateOrderStatus(orderId);
         res.status(200).json({message: 'Status Actualizado!'})
     } catch (_err) {
         console.log(_err);

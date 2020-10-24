@@ -10,7 +10,8 @@ import {
     NewOrderController,
     RegisterPageController,
     SingleOrderPageController,
-    UsersPageController
+    UsersPageController,
+    MyCartPageController
 } from "../controllers/views-controller";
 import {RedirectHomeIfIsAuthenticated} from "../controllers/helpers";
 
@@ -60,6 +61,8 @@ viewRouter.get('/orders/:orderId(\\d+)', isLoggedIn, WillRenderAView,  SingleOrd
 viewRouter.get('/users', isLoggedIn, WillRenderAView, UsersPageController);
 
 viewRouter.get('/my-orders', isLoggedIn, WillRenderAView,  MyOrderPageController);
+
+viewRouter.get('/carrito', isLoggedIn, WillRenderAView,  MyCartPageController);
 
 viewRouter.get('/orders/new', isLoggedIn, WillRenderAView, NewOrderController);
 

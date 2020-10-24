@@ -11,6 +11,6 @@ principalRouter.use(viewRouter);
 
 principalRouter.use(authRouter);
 
-principalRouter.use('/orders', OrderRouter);
+principalRouter.use(OrderRouter);
 
 export default principalRouter;
