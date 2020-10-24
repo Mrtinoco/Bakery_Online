@@ -56,7 +56,7 @@ OrderRouter.post('/orders/new', isLoggedInAPI, createOrderValidation, Validation
 
 OrderRouter.post('/:orderId(\\d+)/comment', isLoggedInAPI,createCommentValidation, ValidationAPI, AddCommentToOrderController);
 
-OrderRouter.delete('/:orderId(\\d+)', isLoggedInAPI, DeleteOrderController);
+OrderRouter.delete('/posts/:orderId(\\d+)', isLoggedInAPI, DeleteOrderController);
 
 // OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdateStatusController);
 OrderRouter.patch('/carrito', isLoggedInAPI, ValidationAPI, UpdateStatusController);

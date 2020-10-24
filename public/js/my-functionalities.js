@@ -97,24 +97,21 @@
 
         $('button.deleteMyPost-big').on('click', function (e) {
             const deleteButton = $(this);
-            const postId = deleteButton.data('postId');
-            if (postId) {
-                const eliminar = confirm('Estas seguro que deseas eliminar el post?');
+            const orderId = deleteButton.data('postId');
+            if (orderId) {
+                const eliminar = confirm('Estas seguro que deseas eliminar la orden?');
                 if (eliminar) {
                     $.ajax({
-                        url: `/posts/${postId}`,
+                        url: `/posts/${orderId}`,
                         type: 'DELETE',
                     })
                         .done(() => {
-                            toastr.info('El post seleccionado fue eliminado!', 'Exito');
-                            const blogItem = deleteButton.parents('div.single-blog-post');
-                            if (blogItem) {
-                                blogItem.remove()
-                            }
+                            toastr.info('La orden seleccionada fue eliminado!', 'Exito');
+
                         })
                         .fail(err => {
                             DisplayMessagesFromRequestError(err, 'Ocurrio un error tratando de eliminar el post!');
-                            toastr.error('No se pudo eliminar eliminar el post seleccionado!', 'Error')
+                            toastr.error('No se pudo eliminar la orden seleccionada!', 'Error')
                         })
                 }
             }

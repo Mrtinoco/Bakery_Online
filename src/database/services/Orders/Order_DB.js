@@ -105,7 +105,7 @@ export async function UpdateOrderStatus(orderId) {
     return orders
 }
 
-export async function GetOrderById(postId) {
+export async function GetOrderById(orderId) {
     return db.Order.findByPk(orderId, {
         include: [ {
             model: db.OrderReaction,
