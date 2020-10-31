@@ -50,7 +50,7 @@ export const uploadPhoto = upload.single('photo');
 
 OrderRouter.get('/', GetAllOrdersController);
 
-OrderRouter.get('/:orderId(\\d+)', GetOrderByIdController);
+OrderRouter.get('/orders/:orderId(\\d+)', GetOrderByIdController);
 
 OrderRouter.post('/orders/new', isLoggedInAPI, createOrderValidation, ValidationAPI, CreateOrderController);
 

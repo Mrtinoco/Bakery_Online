@@ -108,7 +108,7 @@ export async function UpdateOrderStatus(orderId) {
 export async function GetOrderById(orderId) {
     return db.Order.findByPk(orderId, {
         include: [ {
-            model: db.OrderReaction,
+            model: db.Order_reaction,
             as: 'reactions',
             include: [{
                 model: db.User, as: 'buyer',
