@@ -284,10 +284,11 @@
             addCommentForm.on('submit', function (e) {
                 e.preventDefault();
                 const data = getFormData($(this));
+                console.log(data);
                 addCommentForm.find('textarea#comment').prop('disabled', true);
                 console.log('add comment', data);
                 $.ajax({
-                    url: `/posts/${data.postId}/comment`,
+                    url: `/orders/${data.orderId}/comment`,
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(data),
@@ -301,7 +302,7 @@
                     }, 500)
                 }).fail(err => {
                     addCommentForm.find('textarea#comment').prop('disabled', false);
-                    DisplayMessagesFromRequestError(err, 'Error al añadir el comentario al post!');
+                    DisplayMessagesFromRequestError(err, 'Error al añadir el comentario a la orden!');
                 });
             })
         }

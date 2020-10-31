@@ -1,7 +1,7 @@
 import db from '../../models';
 
 export async function createComment(orderId, userId, comment) {
-    const newComment = await db.OrderReaction.create({orderId, userId, comment});
+    const newComment = await db.Order_reaction.create({orderId, userId, comment});
     return newComment
 }
 

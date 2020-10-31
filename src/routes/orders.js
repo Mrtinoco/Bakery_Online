@@ -54,7 +54,7 @@ OrderRouter.get('/orders/:orderId(\\d+)', GetOrderByIdController);
 
 OrderRouter.post('/orders/new', isLoggedInAPI, createOrderValidation, ValidationAPI, CreateOrderController);
 
-OrderRouter.post('/:orderId(\\d+)/comment', isLoggedInAPI,createCommentValidation, ValidationAPI, AddCommentToOrderController);
+OrderRouter.post('/orders/:orderId(\\d+)/comment', isLoggedInAPI,createCommentValidation, ValidationAPI, AddCommentToOrderController);
 
 OrderRouter.delete('/posts/:orderId(\\d+)', isLoggedInAPI, DeleteOrderController);
 
