@@ -11,7 +11,8 @@ import {
     RegisterPageController,
     SingleOrderPageController,
     UsersPageController,
-    MyCartPageController
+    MyCartPageController,
+    AllOrdersPageController
 } from "../controllers/views-controller";
 import {RedirectHomeIfIsAuthenticated} from "../controllers/helpers";
 
@@ -65,5 +66,7 @@ viewRouter.get('/my-orders', isLoggedIn, WillRenderAView,  MyOrderPageController
 viewRouter.get('/carrito', isLoggedIn, WillRenderAView,  MyCartPageController);
 
 viewRouter.get('/orders/new', isLoggedIn, WillRenderAView, NewOrderController);
+
+viewRouter.get('/all-orders', isLoggedIn, WillRenderAView, AllOrdersPageController);
 
 export default viewRouter;

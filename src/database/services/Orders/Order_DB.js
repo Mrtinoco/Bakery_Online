@@ -25,6 +25,10 @@ export async function GetAllUserPendOrders(userId) {
     return GetAllOrders({where: {userId, status: "Pendiente"},order: [['createdAt', 'DESC']]})
 }
 
+export async function GetAllAdminOrders() {
+    return GetAllOrders({where: {status: "Pagado"},order: [['createdAt', 'DESC']]})
+}
+
 export async function GetCartOrders(userId) {
     return GetAllOrders({where: {userId, status: "Pendiente"},order: [['createdAt', 'DESC']]})
 }

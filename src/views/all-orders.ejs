@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<%- include('_partials/head') %>
+<body>
+<!-- Preloader Start -->
+<div id="preloader">
+    <div class="preload-content">
+        <div id="world-load"></div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<%- include('_partials/header',{req:req, activePage: "pedidos"}) %>
+
+<!-- ********** Hero Area Start ********** -->
+<div class="hero-area height-600 bg-img background-overlay" style="background-image: url(/img/times_period.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="single-blog-title text-center">
+                    <!-- Catagory -->
+                    <div class="post-cta"><a href="#">Crea</a></div>
+                    <h3>Hay que ser codicioso cuando los demás son temerosos y temerosos
+                        cuando los demás son codiciosos</h3>
+                    </p>
+                    <p><h3>Warren Buffett</h3></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ********** Hero Area End ********** -->
+
+<div class="main-content-wrapper section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="title my-5">
+                    <h2>Mis Posts</h2>
+                    <a href="/orders/new" class="btn btn-outline-info btn-lg">Haz una nueva orden</a>
+                </div>
+
+                <% for(let order of orders) { %>
+                    <!-- Single Blog Post -->
+                    <div class="single-blog-post post-style-4 d-flex align-items-center wow fadeInUpBig"
+                         data-wow-delay="0.2s">
+                        <!-- Post Thumbnail -->
+                        <div class="post-thumbnail">
+                            <!-- div class="post-cta single-linear-post-category" -->
+                                <img src='/img/posts/<%= order.imageurl %>' alt="">
+                                <a href="#"><%= order.breadId %></a>
+                                <a href="#"><%= order.extraId%></a>
+                                <a href="#"><%= order.rellenoId %></a>
+                                <a href="#"><%= order.glutenId %></a>
+                                <a href="#"><%= order.payment %></a>
+                            <!-- /div -->
+                        </div>
+                        <!-- Post Content -->
+                        <div class="post-content w-100">
+                            <div class="headline d-flex w-100 justify-content-between">
+                                <a href="/orders/<%= order.id %>">
+                                    <h5><%= order.id %></h5>
+                                </a>
+                                <div>
+                                    <a href="/orders/<%= order.id %>/edit" class="btn btn-outline-primary">Edit</a>
+                                    <button type="submit" data-post-id="<%= order.id%>" class="btn btn-outline-danger deleteMyPost-big">Delete
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Post Meta -->
+                            <div class="post-meta">
+                                <p>
+                                    <a href="#" class="post-author">
+                                        <%= order.buyer.fullName %>
+                                    </a> on <a href="#">
+                                        <%= order.createdAt.toLocaleString() %>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                <% } %>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ***** Footer Area Start ***** -->
+<%- include('_partials/footer') %>
+</body>
+</html>
