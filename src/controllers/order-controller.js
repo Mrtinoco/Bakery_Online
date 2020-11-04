@@ -4,7 +4,8 @@ import {
     DeleteOrder,
     UpdateOrderPublic,
     UpdateOrderStatus,
-    GetOrderById
+    GetOrderById,
+    UpdateImage
 } from "../database/services/Orders/Order_DB";
 
 import {
@@ -101,5 +102,22 @@ export const UpdatePublicController = async (req, res, next) => {
     } catch (_err) {
         console.log(_err);
         res.status(500).json({message: 'Ocurrio un error al actualizar!'})
+    }
+};
+
+export const UpdateImageController = async (req, res, next) => {
+    const orderId = req.params.orderId;
+    const postData = matchedData(req, {locations: ['body']});
+    console.log(postData);
+    console.log('post data', postData);
+    try {
+        if (req.file) {
+            postData.imageurl = req.file.filename;
+        }
+        const post = await UpdateImage(orderId, postData);
+        res.status(200).json({message: 'Imagen Actualizada!'})
+    } catch (_err) {
+        console.log(_err);
+        res.status(500).json({message: 'Ocurrio un error al actualizar la orden!'})
     }
 };

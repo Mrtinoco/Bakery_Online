@@ -123,37 +123,31 @@
                 e.preventDefault();
                 console.log('Edit form', e);
                 // toastr.error('Error', 'Error al intentar crear el post!');
-                const postIdElement = editPostForm.find('input#postId');
-                const postTitle = editPostForm.find('input#title');
-                const postContent = editPostForm.find('#content');
-                const postCategory = editPostForm.find('#categoryId');
-                const postImageElement = editPostForm.find('#image');
-                const postImageFiles = postImageElement[0].files;
+                const orderIdElement = editPostForm.find('input#orderId');
+                const orderImageElement = editPostForm.find('#image');
+                const orderImageFiles = orderImageElement[0].files;
 
-                const postId = postIdElement.val();
+                const orderId = orderIdElement.val();
                 const data = new FormData();
-                data.append('title', postTitle.val());
-                data.append('content', postContent.val());
-                data.append('categoryId', postCategory.val());
-                if (postImageFiles !== undefined && postImageElement.length > 0) {
-                    data.append('photo', postImageFiles[0]);
+                if (orderImageFiles !== undefined && orderImageElement.length > 0) {
+                    data.append('photo', orderImageFiles[0]);
                 }
                 editPostForm.find('input').prop('disabled', true);
                 editPostForm.find('textarea').prop('disabled', true);
                 $.ajax({
-                    url: `/posts/${postId}`,
+                    url: `/orders/${orderId}`,
                     type: "PATCH",
                     data,
                     processData: false,  // tell jQuery not to process the data
                     contentType: false   // tell jQuery not to set contentType
                 }).done(res => {
-                    toastr.info('Tu post has sido editado con exito!', 'Exito');
+                    toastr.info('Tu imagen has sido editada con exito!', 'Exito');
                     setTimeout(() => {
-                            window.open('./', '_self')
+                            window.open('/my-orders', '_self')
                         }, 1000
                     )
                 }).fail(_err => {
-                    DisplayMessagesFromRequestError(_err, 'Ocurrio un error al actualizar el post!');
+                    DisplayMessagesFromRequestError(_err, 'Ocurrio un error al actualizar la imagen!');
                 });
             })
         }

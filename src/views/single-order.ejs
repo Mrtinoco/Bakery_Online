@@ -63,8 +63,21 @@
 
                         </div>
                         <% if (isOwnerOrAdmin(order.buyer.id) ) { %>
+
+                        <form action="/" id="edit-post" method="post">
+                            <input type="hidden" id="orderId" name="orderId" value="<%= order.id %>">
+                            <div class="custom-file my-4">
+                                <input type="file" class="custom-file-input" name="image" id="image" lang="es">
+                                <label class="custom-file-label form-control-file" for="image">
+                                    Seleccionar una para reemplazar la imagen actual
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-lg btn-outline-info px-4">Actualizar Imagen</button>
+                            <a href="/my-orders" class="btn btn-outline-danger btn-lg">Cancelar</a>
+                        </form>
+
                             <div class="my-4">
-                                <a href="/posts/<%= order.id %>/edit" class="btn btn-outline-primary">Editar post</a>
                                 <button type="submit" data-post-id="<%= order.id%>" class="btn btn-outline-danger deleteMyPost-big">Eliminar orden
                                 </button>
                             </div>

@@ -9,6 +9,7 @@ import {
     GetOrderByIdController,
     UpdateStatusController,
     UpdatePublicController,
+    UpdateImageController
 } from "../controllers/order-controller";
 import {isLoggedIn, isLoggedInAPI} from "./helpers";
 import multer from "multer";
@@ -20,14 +21,14 @@ const OrderRouter = Express.Router();
 
 const multerStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const folderPath = path.join(process.cwd(), 'public', 'img', 'orders');
+        const folderPath = path.join(process.cwd(), 'public', 'img', 'posts');
         cb(null, folderPath);
     },
     filename: (req, file, cb) => {
-        const filename = slug(req.body.title).slice(0, 10);
+        const filename = slug(req.params.orderId).slice(0, 10);
         const extension = file.mimetype.split('/')[1];
         console.log('filename', file, filename);
-        cb(null, `post-${req.user.id}-${filename}-${Date.now()}.${extension}`);
+        cb(null, `order-${req.user.id}-${filename}-${Date.now()}.${extension}`);
     }
 });
 
@@ -62,5 +63,7 @@ OrderRouter.delete('/posts/:orderId(\\d+)', isLoggedInAPI, DeleteOrderController
 OrderRouter.patch('/carrito', isLoggedInAPI, ValidationAPI, UpdateStatusController);
 
 OrderRouter.patch('/:orderId(\\d+)', isLoggedInAPI, ValidationAPI, UpdatePublicController);
+
+OrderRouter.patch('/orders/:orderId(\\d+)', isLoggedInAPI, uploadPhoto, ValidationAPI, UpdateImageController);
 
 export default OrderRouter;

@@ -1,4 +1,6 @@
 import db from '../../models';
+import path from "path";
+import fs from "fs";
 
 export async function GetAllOrders(extraOptions = {}) {
     return db.Order.findAll({
@@ -134,4 +136,29 @@ export async function GetOrderById(orderId) {
             attributes: ['id', 'fullName', 'first_name', 'last_name','address']
         }]
     })
+}
+
+
+export const deleteOrderImage = (imageName) => {
+    const filePath = path.join(__dirname, '..', '..', 'public', 'img', 'posts', imageName);
+    fs.unlink(filePath, (err) => {
+        if (err)
+            console.error(`La imagen ${filePath} no pudo ser eliminada`)
+    })
+};
+
+export async function UpdateImage(orderId, postData) {
+    if (!orderId) throw new Error('Invalid argument: orderId');
+    const post = await db.Order.findByPk(orderId);
+    if (post) {
+        // Give like
+        if (postData.imageurl) {
+           if (postData.imageurl !== 'd_order.jpg'){
+                deleteOrderImage(post.imageurl);
+           }
+            post.imageurl = postData.imageurl;
+        }
+        await post.save()
+    }
+    return post
 }
