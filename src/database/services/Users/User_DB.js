@@ -37,7 +37,7 @@ export async function GetAllUsers() {
     return db.User.findAll({
         attributes:
             [
-                'id', 'first_name', 'last_name','address', 'createdAt', 'updatedAt', [sequelize.fn('COUNT', sequelize.col('posts.id')), 'postCount']
+                'id', 'first_name', 'last_name','address', 'createdAt', 'updatedAt', [sequelize.fn('COUNT', sequelize.col('orders.id')), 'orderCount']
             ],
         include: [
             {
