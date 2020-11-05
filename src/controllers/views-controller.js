@@ -61,7 +61,7 @@ export const MyOrderPageController = async (req, res) => {
 
 export const MyCartPageController = async (req, res) => {
     const orders = await GetCartOrders(req.user.id);
-
+    let pago = 0;
     for (let order of orders) {
         console.log(order);
         let bid = order.breadId;
@@ -72,8 +72,10 @@ export const MyCartPageController = async (req, res) => {
         order.extraId = await GetExtraName(eid);
         order.glutenId = await GetGlutenName(gid);
         order.rellenoId = await GetRellenoName(rid);
+        pago = pago + order.payment;
     }
-    res.render('carrito', {orders: orders || []});
+
+    res.render('carrito', {orders: orders,pago:pago || []});
 };
 
 
