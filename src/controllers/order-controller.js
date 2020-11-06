@@ -36,7 +36,7 @@ export const CreateOrderController = async (req, res, next) => {
     postData.payment = await price(postData.breadId,postData.extraId,postData.glutenId,postData.rellenoId);
     console.log(postData);
     const newOrder = await CreateNewOrder(postData);
-    res.status(200).json(newOrder)
+    res.redirect('/orders/new')
 };
 
 async function price (breadId,extraId,glutenId,rellenoId) {
