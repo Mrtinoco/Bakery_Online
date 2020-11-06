@@ -20,12 +20,11 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="single-blog-title text-center">
                     <!-- Catagory -->
-                    <div class="post-cta"><a href="#">Descubre</a></div>
+                    <div class="post-cta"><a href="#">Bienvenido!</a></div>
                     <p>
-                    <h3>No importa para nada si tienes razón o no. Lo que sí importa es cuánto ganas cuando tienes
-                        razón y cuánto pierdes cuando estás equivocado.</h3>
+                    <h3>“En la casa que no hay pan, pocas cosas se dan”</h3>
                     </p>
-                    <p><h3>George Soros</h3></p>
+                    <p><h3>Comparte!</h3></p>
                 </div>
             </div>
         </div>
@@ -54,23 +53,20 @@
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
                                         <img src='/img/posts/<%= order.imageurl %>' alt="">
-                                        <h5><%= order.bread.name %></h5>
-                                        <h5><%= order.relleno.name %></h5>
-                                        <h5><%= order.extra.name %></h5>
-                                        <h5><%= order.gluten.name %></h5>
+                                        <h6>Orden No: <%= order.id %></h6>
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="/orders/<%= order.id %>" class="headline">
-                                            <h5><%= order.username %></h5>
-                                        </a>
-                                        <p><%= order.payment %></p>
+
+                                        <p><h7>Tipo de pan: <%= order.bread.name %></h7></p>
+                                        <p> <h7>Relleno: <%= order.relleno.name %></h7></p>
+                                        <p> <h7>Ingrediente extra: <%= order.extra.name %></h7> </p>
+                                        <p> <h7>Tipo de harina: <%= order.gluten.name %></h7> </p>
+                                        <p><h7>Costo: C$<%= order.payment %></h7></p>
                                         <!-- Post Meta -->
                                         <div class="post-meta">
                                             <p>
-                                                <a href="#" class="post-author">
-                                                    <%= order.buyer.fullName %>
-                                                </a> on <a href="#">
+                                                Ordenado el <a href="#">
                                                     <%= order.createdAt.toLocaleString() %>
                                                 </a>
                                             </p>
@@ -149,13 +145,7 @@
         </div>
 
         <!-- Load More btn -->
-        <div class="row">
-            <div class="col-12">
-                <div class="load-more-btn mt-50 text-center">
-                    <a href="/posts" class="btn world-btn">Cargar mas</a>
-                </div>
-            </div>
-        </div>
+
     </div>
 </div>
 

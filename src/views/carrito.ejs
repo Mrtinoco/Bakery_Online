@@ -19,11 +19,10 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="single-blog-title text-center">
                     <!-- Catagory -->
-                    <div class="post-cta"><a href="#">Crea</a></div>
-                    <h3>Hay que ser codicioso cuando los demás son temerosos y temerosos
-                        cuando los demás son codiciosos</h3>
+                    <div class="post-cta"><a href="#">Disfruta</a></div>
+                    <h3>¡Este día será pan comido!</h3>
                     </p>
-                    <p><h3>Warren Buffett</h3></p>
+                    <p><h3>Despierta</h3></p>
                 </div>
             </div>
         </div>
@@ -48,24 +47,27 @@
                         <div class="post-thumbnail">
                             <!-- div class="post-cta single-linear-post-category" -->
                                 <img src='/img/posts/<%= order.imageurl %>' alt="">
-                                <a href="#"><%= order.breadId %></a>
-                                <a href="#"><%= order.extraId%></a>
-                                <a href="#"><%= order.rellenoId %></a>
-                                <a href="#"><%= order.glutenId %></a>
-                                <a href="#"><%= order.payment %></a>
+
                             <!-- /div -->
                         </div>
                         <!-- Post Content -->
                         <div class="post-content w-100">
                             <div class="headline d-flex w-100 justify-content-between">
                                 <a href="/orders/<%= order.id %>">
-                                    <h5><%= order.id %></h5>
+                                    <h6>Orden No: <%= order.id %></h6>
                                 </a>
                                 <div>
                                     <button type="submit" data-post-id="<%= order.id%>" class="btn btn-outline-danger deleteMyPost-big">Delete
                                     </button>
                                 </div>
                             </div>
+
+                            <p><h7>Tipo de pan: <%= order.breadId %></h7></p>
+                            <p><h7>Ingrediente extra: <%= order.extraId%></h7></p>
+                            <p><h7>Relleno: <%= order.rellenoId %></h7></p>
+                            <p><h7>Tipo de Harina: <%= order.glutenId %></h7></p>
+                            <p><h7>Costo: C$<%= order.payment %></h7></p>
+
                             <!-- Post Meta -->
                             <div class="post-meta">
                                 <p>
@@ -85,9 +87,11 @@
             </div>
 
             <% { %>
-            <div class="container">
-               <h5>Total a pagar:</h5>
-               <h5> <%= pago %> </h5>
+            <div class="container" style="margin-top: 5%;">
+                <div class = "row justify-content-center">
+               <h6>Total a pagar: </h6>
+               <h6> C$<%= pago %> </h6>
+                </div>
             </div>
             <% }%>
 

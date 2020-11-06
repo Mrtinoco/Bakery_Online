@@ -19,11 +19,10 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="single-blog-title text-center">
                     <!-- Catagory -->
-                    <div class="post-cta"><a href="#">Crea</a></div>
-                    <h3>Hay que ser codicioso cuando los demás son temerosos y temerosos
-                        cuando los demás son codiciosos</h3>
+                    <div class="post-cta"><a href="#">Descubre</a></div>
+                    <h3>“El olor a pan caliente debería ser patrimonio de la humanidad”</h3>
                     </p>
-                    <p><h3>Warren Buffett</h3></p>
+
                 </div>
             </div>
         </div>
@@ -36,7 +35,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="title my-5">
-                    <h2>Mis Posts</h2>
+                    <h2>Mis Ordenes</h2>
                     <a href="/orders/new" class="btn btn-outline-info btn-lg">Haz una nueva orden</a>
                 </div>
 
@@ -48,25 +47,28 @@
                         <div class="post-thumbnail">
                             <!-- div class="post-cta single-linear-post-category" -->
                                 <img src='/img/posts/<%= order.imageurl %>' alt="">
-                                <a href="#"><%= order.breadId %></a>
-                                <a href="#"><%= order.extraId%></a>
-                                <a href="#"><%= order.rellenoId %></a>
-                                <a href="#"><%= order.glutenId %></a>
-                                <a href="#"><%= order.payment %></a>
+
                             <!-- /div -->
                         </div>
                         <!-- Post Content -->
                         <div class="post-content w-100">
                             <div class="headline d-flex w-100 justify-content-between">
                                 <a href="/orders/<%= order.id %>">
-                                    <h5><%= order.id %></h5>
+                                    <h5>Orden No:<%= order.id %></h5>
                                 </a>
+
                                 <div>
-                                    <a href="/orders/<%= order.id %>/edit" class="btn btn-outline-primary">Edit</a>
                                     <button type="submit" data-post-id="<%= order.id%>" class="btn btn-outline-danger deleteMyPost-big">Delete
                                     </button>
                                 </div>
+
                             </div>
+                            <p><h7>Tipo de pan: <%= order.breadId %></h7></p>
+                            <p><h7>Ingrediente extra: <%= order.extraId%></h7></p>
+                            <p><h7>Relleno: <%= order.rellenoId %></h7></p>
+                            <p><h7>Tipo de Harina: <%= order.glutenId %></h7></p>
+                            <p><h7>Costo: C$<%= order.payment %></h7></p>
+
                             <!-- Post Meta -->
                             <div class="post-meta">
                                 <p>
