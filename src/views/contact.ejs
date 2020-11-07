@@ -13,56 +13,8 @@
 <!-- Preloader End -->
 
 <!-- ***** Header Area Start ***** -->
-<header class="header-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navbar-expand-lg">
-                    <!-- Logo -->
-                    <a class="navbar-brand p-0" href="/">
-                        <img src="img/economy-diary-white-logo.png" class="logo-economy-diary" alt="Logo">
-                    </a>
-                    <!-- Navbar Toggler -->
-                    <button class="navbar-toggler" type="button"
-                            aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                                class="navbar-toggler-icon"></span></button>
-                    <!-- Navbar -->
-                    <div class="collapse navbar-collapse" id="worldNav">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">Inicio</a>
-                            </li>
-                            <% if( req.isAuthenticated() ) { %>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/my-posts">Mis posts</a>
-                                </li>
-                            <% } %>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/posts">Posts</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/contact">Contactos<span class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
-                        <% if(req.isAuthenticated())  { %>
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/logout">Logout</a>
-                                </li>
-                            </ul>
-                        <% } else { %>
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/login">Login</a>
-                                </li>
-                            </ul>
-                        <% } %>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
+<%- include('_partials/header',{req:req, activePage: "contact"}) %>
+
 <!-- ***** Header Area End ***** -->
 <div class="hero-area height-600 bg-img background-overlay" style="background-image: url(img/contactos.jpg);">
     <div class="container h-100">
