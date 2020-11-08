@@ -10,7 +10,7 @@
 </div>
 <!-- Preloader End -->
 
-<%- include('_partials/header',{req:req}) %>
+<%- include('_partials/header',{req:req, activePage: "my-posts"}) %>
 
 <!-- ********** Hero Area Start ********** -->
 <div class="hero-area height-600 bg-img background-overlay" style="background-image: url(/img/times_period.jpg);">
@@ -37,7 +37,7 @@
             <div class="col-12 col-lg-8">
                 <% if (order !== undefined && order !== null) { %>
                     <div class="single-blog-content mb-100">
-                        <h2><%= order.id %></h2>
+                        <h2>Orden No: <%= order.id %></h2>
                         <!-- Post Meta -->
                         <div class="post-meta">
                             <p>
@@ -52,13 +52,13 @@
                         <div class="post-content">
                             <img src="/img/posts/<%= order.imageurl %>" class="my-3 border"
                                  alt="<%= order.id %> image">
-                            <pre><%= order.bread.name %></pre>
-                            <pre><%= order.relleno.name %></pre>
-                            <pre><%= order.extra.name %></pre>
-                            <pre><%= order.gluten.name %></pre>
+                            <pre>Tipo de Pan: <%= order.bread.name %></pre>
+                            <pre>Relleno: <%= order.relleno.name %></pre>
+                            <pre>Ingrediente extra: <%= order.extra.name %></pre>
+                            <pre>Tipo de Harina: <%= order.gluten.name %></pre>
                             <!-- Post Tags -->
                             <ul class="post-tags">
-                                <li><a href="#" class="bg-gray"><%= order.payment %></a></li>
+                                <li><a href="#" class="bg-gray"><pre>Costo: C$<%= order.payment %></pre></a></li>
                             </ul>
 
                         </div>
