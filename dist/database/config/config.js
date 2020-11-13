@@ -1,5 +1,9 @@
 // import '../../env'
-require('dotenv').config()
+// require('dotenv').config()
+
+if (process.env.NODE_ENV == "development") {
+  require('dotenv').config();
+}
 
 module.exports = {
   development: {
