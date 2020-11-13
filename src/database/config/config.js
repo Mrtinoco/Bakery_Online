@@ -1,5 +1,5 @@
-import '../../env'
-// require('dotenv').config()
+// import '../../env'
+require('dotenv').config()
 
 module.exports = {
   development: {
