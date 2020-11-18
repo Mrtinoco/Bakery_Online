@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="rellenoId">¿Desea que su pan lleve gluten?</label>
+                                <label for="rellenoId">Relleno</label>
                                 <select class="form-control" name="rellenoId" id="rellenoId" onchange="rellenoFunction()">
                                     <% for(let relleno of RellenoCategories) { %>
                                         <option value="<%= relleno.id %>"><%= relleno.name %></option>
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="glutenId">¿Desea que su pan lleve gluten?</label>
+                                <label for="glutenId">Tipo de Harina</label>
                                 <select class="form-control" name="glutenId" id="glutenId" onchange="glutenFunction()">
                                     <% for(let gluten of GlutenCategories) { %>
                                         <option value="<%= gluten.id %>"><%= gluten.name %></option>
